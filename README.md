@@ -2,7 +2,11 @@
 Try below code to convert `xml` files into `json`. 
 * This converts xml attributes as well
 * Files with more than one xml, can also be parsed to result `list` of jsons
-### Code *(python)*
+<details>
+<summary>
+Code (python)
+</summary>
+    
 ```python
 import re
 import json
@@ -21,6 +25,11 @@ def getdict(content):
 with open("test.xml","r") as f:
     print(json.dumps(getdict(f.read().replace('\n',''))))
 ```
+
+</details>
+<details>
+    <summary>Demo</summary>
+    
 ### Sample input
 ```xml
 <details class="4b" count=1 boy>
@@ -44,6 +53,7 @@ with open("test.xml","r") as f:
     </address>
 </details>
 ```
+
 ### Output
 ```json
 [
@@ -245,6 +255,7 @@ with open("test.xml","r") as f:
   }
 ]
 ```
+</details>
 
 ## Convert python `string`, that also include `hex` notation, into `byte array`
 **Code**
