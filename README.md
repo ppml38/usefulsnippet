@@ -257,6 +257,16 @@ with open("test.xml","r") as f:
 ```
 </details>
 
+## Convert `csv` data into `xml` data
+```python
+with open("input.csv","r") as f:
+    head=[i.strip() for i in f.readline().split(",")]
+    line=f.readline()
+    while line:
+        print("".join(["<%s>%s</%s>"%(i,a.strip(),i) for (i,a) in zip(head,line.split(","))]))
+        line=f.readline()
+```
+
 ## Convert python `string`, that also include `hex` notation, into `byte array`
 **Code**
 ```python
