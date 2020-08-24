@@ -280,3 +280,61 @@ Hello\xad
 ```
 [72, 101, 108, 108, 111, 173]
 ```
+
+## Get user input until user gives valid input
+Below code may help.
+```python
+age=(lambda i,f: f(i,f))(input("Please enter your age: "),lambda i,f: i if i.isdigit() else f(input("Please enter your age: "),f))
+print("You are able to vote in the united states" if int(age)>=18 else "You are not able to vote in the united states",end='')
+```
+If you want to have maximum tries, say 3, use below code
+```python
+age=(lambda i,n,f: f(i,n,f))(input("Please enter your age: "),1,lambda i,n,f: i if i.isdigit() else (None if n==3 else f(input("Please enter your age: "),n+1,f)))
+print("You are able to vote in the united states" if age and int(age)>=18 else "You are not able to vote in the united states",end='')
+```
+
+## Handling `blur` event triggered when `Launch application` confirmation pops up in browser
+Generally this can be solved by handling `visibilitychange` event instead of `blur` as below.
+```javascript
+document.addEventListener("visibilitychange", function() {
+    //Change your view here
+});
+```   
+More details on [here](https://developer.mozilla.org/en-US/docs/Web/API/Page_Visibility_API). Please note there are browser specific events too. 
+```
+"visibilitychange"
+"msvisibilitychange"
+"webkitvisibilitychange"
+```
+
+
+In case, you want to handle the situation when user clicks out of browser keeping the site visible, as well. Handle `blur` event instead. 
+
+But now, 'launch application pop-up' which also blurs the window, to be handled specifically. It does not fire any event to handle  
+
+we can have a quick work around to handle it.   
+The idea is based on below 2 behaviors,
+1. The link that fires this popup, will not start with http or https. for example, zoom uses url that starts with `zoommtg://` to launch native application.
+2. `onclick` events fired before `onblur` event.   
+
+Hence, Introducing a flag on `click` event, will help us handle this popup.
+```javascript
+changeViewFlag=true;
+
+window.onblur=function(event){
+        if(changeViewFlag==true)
+        {
+            //Change your view here
+        } 
+        changeViewFlag=true;
+    }
+
+window.onclick=function(event){
+        if(event.target.href!=null &&
+           event.target.href.split("://").length>1 &&
+           ["http","https"].indexOf(event.target.href.split("://")[0])==-1)
+           {
+             changeViewFlag=false;
+           }
+    }
+```
