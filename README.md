@@ -245,3 +245,17 @@ with open("test.xml","r") as f:
   }
 ]
 ```
+
+## Convert python `string`, that also include `hex` notation, into `byte array`
+**Code**
+```python
+output=[ord(i) for i in re.findall(".",input)]
+```
+**Sample input**
+```
+Hello\xad
+```
+**Output**
+```
+[72, 101, 108, 108, 111, 173]
+```
