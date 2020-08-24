@@ -1,5 +1,7 @@
 ## Convert `xml` to `json`
-Try below code to convert `xml` files into `json`. this also convert xml attributes.
+Try below code to convert `xml` files into `json`. 
+* This converts xml attributes as well
+* Files with more than one xml, can also be parsed to result `list` of jsons
 ### Code *(python)*
 ```python
 import re
