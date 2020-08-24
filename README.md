@@ -338,3 +338,13 @@ window.onclick=function(event){
            }
     }
 ```
+## Convert `epoch` time into Day of the week
+```python
+import calendar
+import datetime
+import time
+dateproc=1597753682
+day=calendar.day_name[datetime.datetime.strptime(time.strftime('%d %m %Y', time.localtime(dateproc)),'%d %m %Y').weekday()]
+
+print(day)
+```
