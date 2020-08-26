@@ -3,10 +3,6 @@ Try below code to convert `xml` files into `json`.
 * This converts xml attributes as well
 * Can parse empty tags and tags with only attributes
 * Files with more than one xml, can also be parsed to result `list` of jsons
-<details>
-<summary>
-Code (python)
-</summary>
     
 ```python
 import re
@@ -26,42 +22,6 @@ def getdict(content):
 with open("test.xml","r") as f:
     print(json.dumps(getdict(f.read().replace('\n',''))))
 ```
-
-</details>
-<details>
-    <summary>Demo</summary>
-    
-### Sample input
-```xml
-<details class="4b" count=1 boy>
-    <name type="firstname">John</name>
-    <age>13</age>
-    <hobby>Coin collection</hobby>
-    <hobby>Stamp collection</hobby>
-    <address>
-        <country>USA</country>
-        <state>CA</state>
-    </address>
-</details>
-<details empty="True"/>
-<details/>
-<details class="4a" count=2 girl>
-    <name type="firstname">Samantha</name>
-    <age>13</age>
-    <hobby>Fishing</hobby>
-    <hobby>Chess</hobby>
-    <address current="no">
-        <country>Australia</country>
-        <state>NSW</state>
-    </address>
-</details>
-```
-
-### Output
-```json
-
-```
-</details>
 
 ## Convert `csv` data into `xml` data
 ```python
