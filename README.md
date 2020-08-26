@@ -1,7 +1,6 @@
 ## Convert `xml` to `json`
-Try below code to convert `xml` files into `json`. 
-* This converts xml attributes as well
-* Can parse empty tags and tags with only attributes
+Try below code to convert `xml` files into `json`, including xml attributes.
+* Can parse empty tags`<tag/>` and tags with only attributes`<tag var=val/>`
 * Files with more than one xml, can also be parsed to result `list` of jsons
     
 ```python
