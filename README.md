@@ -1,6 +1,7 @@
 ## Convert `xml` to `json`
 Try below code to convert `xml` files into `json`. 
 * This converts xml attributes as well
+* Can parse empty tags and tags with only attributes
 * Files with more than one xml, can also be parsed to result `list` of jsons
 <details>
 <summary>
@@ -12,7 +13,7 @@ import re
 import json
 
 def getdict(content):
-    res=re.findall("<(?P<var>\S*)(?P<attr>[^>]*)>(?P<val>.*?)</(?P=var)>",content)
+    res=re.findall("<(?P<var>\S*)(?P<attr>[^/>]*)(?:(?:>(?P<val>.*?)</(?P=var)>)|(?:/>))",content)
     if len(res)>=1:
         attreg="(?P<avr>\S+?)(?:(?:=(?P<quote>['\"])(?P<avl>.*?)(?P=quote))|(?:=(?P<avl1>.*?)(?:\s|$))|(?P<avl2>[\s]+)|$)"
         if len(res)>1:
@@ -42,6 +43,8 @@ with open("test.xml","r") as f:
         <state>CA</state>
     </address>
 </details>
+<details empty="True"/>
+<details/>
 <details class="4a" count=2 girl>
     <name type="firstname">Samantha</name>
     <age>13</age>
@@ -56,204 +59,7 @@ with open("test.xml","r") as f:
 
 ### Output
 ```json
-[
-  {
-    "details": [
-      {
-        "@attributes": [
-          {
-            "class": "4b"
-          },
-          {
-            "count": "1"
-          },
-          {
-            "boy": ""
-          }
-        ]
-      },
-      {
-        "$values": [
-          {
-            "name": [
-              {
-                "@attributes": [
-                  {
-                    "type": "firstname"
-                  }
-                ]
-              },
-              {
-                "$values": "John"
-              }
-            ]
-          },
-          {
-            "age": [
-              {
-                "@attributes": []
-              },
-              {
-                "$values": "13"
-              }
-            ]
-          },
-          {
-            "hobby": [
-              {
-                "@attributes": []
-              },
-              {
-                "$values": "Coin collection"
-              }
-            ]
-          },
-          {
-            "hobby": [
-              {
-                "@attributes": []
-              },
-              {
-                "$values": "Stamp collection"
-              }
-            ]
-          },
-          {
-            "address": [
-              {
-                "@attributes": []
-              },
-              {
-                "$values": [
-                  {
-                    "country": [
-                      {
-                        "@attributes": []
-                      },
-                      {
-                        "$values": "USA"
-                      }
-                    ]
-                  },
-                  {
-                    "state": [
-                      {
-                        "@attributes": []
-                      },
-                      {
-                        "$values": "CA"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "details": [
-      {
-        "@attributes": [
-          {
-            "class": "4a"
-          },
-          {
-            "count": "2"
-          },
-          {
-            "girl": ""
-          }
-        ]
-      },
-      {
-        "$values": [
-          {
-            "name": [
-              {
-                "@attributes": [
-                  {
-                    "type": "firstname"
-                  }
-                ]
-              },
-              {
-                "$values": "Samantha"
-              }
-            ]
-          },
-          {
-            "age": [
-              {
-                "@attributes": []
-              },
-              {
-                "$values": "13"
-              }
-            ]
-          },
-          {
-            "hobby": [
-              {
-                "@attributes": []
-              },
-              {
-                "$values": "Fishing"
-              }
-            ]
-          },
-          {
-            "hobby": [
-              {
-                "@attributes": []
-              },
-              {
-                "$values": "Chess"
-              }
-            ]
-          },
-          {
-            "address": [
-              {
-                "@attributes": [
-                  {
-                    "current": "no"
-                  }
-                ]
-              },
-              {
-                "$values": [
-                  {
-                    "country": [
-                      {
-                        "@attributes": []
-                      },
-                      {
-                        "$values": "Australia"
-                      }
-                    ]
-                  },
-                  {
-                    "state": [
-                      {
-                        "@attributes": []
-                      },
-                      {
-                        "$values": "NSW"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  }
-]
+
 ```
 </details>
 
