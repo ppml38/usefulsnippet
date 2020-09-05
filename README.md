@@ -113,7 +113,8 @@ day=calendar.day_name[datetime.datetime.strptime(time.strftime('%d %m %Y', time.
 
 print(day)
 ```
-### Regex to match variable declaration in javascript
-```
+## Regex to match variable declaration in javascript
+```regex
 (?:var|const|let)\s*\S*\s*=\s*((['"`])|(?=\d))(.*)(?(2)(?=\2).|(?<=\d)(?:;|\s))
 ```
+Captured group \3 will have value
