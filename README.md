@@ -118,3 +118,5 @@ print(day)
 (?:var|const|let)\s*\S*\s*=\s*((['"`])|(?=\d))(.*)(?(2)(?=\2).|(?<=\d)(?:;|\s))
 ```
 Captured group \3 will have value
+## Python basic sniffer
+https://gist.github.com/carcigenicate/dfb7e367f5d01e100305eb93955a7521
